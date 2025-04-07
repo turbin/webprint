@@ -1,0 +1,19 @@
+{
+  "name": "web-printer-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "preview": "vue-cli-service serve --mode production"
+  },
+  "dependencies": {
+    "axios": "^1.2.1",
+    "element-plus": "^2.2.0",
+    "vue": "^3.2.45"
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^5.0.8",
+    "@vue/compiler-sfc": "^3.2.45"
+  }
+}

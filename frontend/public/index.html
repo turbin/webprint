@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web 打印系统</title>
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <!-- 添加Element Plus CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/element-plus@2.2.0/dist/index.css">
+    <style>
+      .app-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        color: #409EFF;
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <strong>很抱歉，Web 打印系统需要启用 JavaScript 才能正常工作。请启用它继续使用。</strong>
+    </noscript>
+    <div id="app">
+      <!-- 添加静态内容，确保页面有内容显示 -->
+      <div class="app-container" id="static-content">
+        <h1>文件打印系统</h1>
+        <button style="background-color: #409EFF; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">
+          测试按钮
+        </button>
+      </div>
+    </div>
+    <!-- 添加Element Plus的CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/element-plus@2.2.0/dist/index.full.js"></script>
+    <!-- built files will be auto injected -->
+    <script>
+      // 如果Vue应用没有正确加载，保留静态内容
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var staticContent = document.getElementById('static-content');
+          if (staticContent && document.body.contains(staticContent)) {
+            // 如果静态内容仍然存在，说明Vue应用没有正确渲染
+            console.log('Vue application did not properly render, keeping static content');
+          }
+        }, 1000);
+      });
+    </script>
+  </body>
+</html> 

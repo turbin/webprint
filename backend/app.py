@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, redirect
 from flask_cors import CORS
 import os
 import time
@@ -25,7 +25,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger("web-printer")
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
 # 增加最大内容长度限制，设为100MB
 app.config['MAX_CONTENT_LENGTH'] = 100 * 1024 * 1024
 CORS(app)
@@ -237,6 +237,16 @@ def add_to_print_queue(file_info):
     
     # 如果没有正在打印的文件，开始处理队列
     process_next_print_job()
+
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
+
+@app.route('/<path:path>')
+def catch_all(path):
+    if path.startswith('api/'):
+        return {'error': 'API not found'}, 404
+    return app.send_static_file('index.html')
 
 @app.route('/api/print', methods=['POST'])
 def upload_file():
